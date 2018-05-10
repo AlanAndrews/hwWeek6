@@ -16,8 +16,12 @@ function renderButtons() {
       var a = $("<button>");
       // Adding a class of country-btn to our button
       a.addClass("country-btn");
-      // Adding a data-attribute
+      // Adding a data-attributes
       a.attr("data-name", countries[i]);
+      a.attr("data-state", "still");
+      a.attr("data-animate");
+      a.attr("data-still");
+
       // Providing the initial button text
       a.text(countries[i]);
       // Adding the button to the countryButtons div
@@ -98,8 +102,11 @@ function renderButtons() {
               // Creating and storing an image tag
               var countryImage = $("<img>");
               // Setting the src attribute of the image to a property pulled off the result item
-              countryImage.attr("src", results[i].images.fixed_height.url);
-  
+              countryImage.attr("src", results[i].images.fixed_height_still.url);
+              countryImage.attr("data-still", results[i].images.fixed_height_still.url);
+              countryImage.attr("data-animate", results[i].images.fixed_height.url);
+              countryImage.attr("data-state", "still");
+              countryImage.addClass("countryImage");
               // Appending the paragraph and image tag to the countryDiv
               countryDiv.append(p);
               countryDiv.append(countryImage);
@@ -110,22 +117,22 @@ function renderButtons() {
             
           });
 
-        //   $(".country-btn").on("click", function() {
-        //     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-        //     var state = $(this).attr("data-state");
+          $(".countryImage").on("click", function() {
+            // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+            var state = $(this).attr("data-state");
       
             
-        //     // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-        //     // Then, set the image's data-state to animate
-        //     // Else set src to the data-still value
-        //     if (state === "still") {
-        //       $(this).attr("src", $(this).attr("data-animate"));
-        //       $(this).attr("data-state", "animate");
-        //     } else {
-        //       $(this).attr("src", $(this).attr("data-still"));
-        //       $(this).attr("data-state", "still");
-        //     }
-        //   });
+            // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+            // Then, set the image's data-state to animate
+            // Else set src to the data-still value
+            if (state === "still") {
+              $(this).attr("src", $(this).attr("data-animate"));
+              $(this).attr("data-state", "animate");
+            } else {
+              $(this).attr("src", $(this).attr("data-still"));
+              $(this).attr("data-state", "still");
+            }
+          });
 
       };
 
