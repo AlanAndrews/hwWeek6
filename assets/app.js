@@ -6,7 +6,7 @@ var countries = ["Venezuela", "Burundi", "Finland", "Laos"];
 function renderButtons() {
 
     // Deleting the movies prior to adding new countries
-    // $("#countryButtons").empty();
+    $("#countryButtons").empty();
 
     // Looping through the array of countries
     for (var i = 0; i < countries.length; i++) {
@@ -22,16 +22,18 @@ function renderButtons() {
       a.text(countries[i]);
       // Adding the button to the countryButtons div
       $("#countryButtons").append(a);
+      
     }
   }
 
 
  // This function handles events where a country button is clicked
- $("#add-country").on("click", function() {
+ $("#add-country").on("click", function(event) {
     event.preventDefault();
     // console.log(countries.length);
-    var movie = $("#country-input").val();
-    countries.push("country-input");
+    var country = $("#country-input").val();
+    countries.push(country);
+    renderButtons();
     // console.log(countries);
 
 
@@ -44,4 +46,8 @@ function renderButtons() {
 
     // // Calling renderButtons which handles the processing of our movie array
     // renderButtons();
-  });
+  
+});
+
+
+renderButtons()
